@@ -111,7 +111,7 @@
 			"tags": ["fc"],
 			"start": "12:00",
 			"title": "EVE For EVEryone Panel",
-			"speakers": ["CCP Tara"],
+			"speakers": ["FC Tara"],
 			"duration": 0
 		},
 		{
@@ -131,7 +131,7 @@
 			"tags": ["fc"],
 			"start": "14:00",
 			"title": "Alliance Leadership Panel: What Goes Into Running an Alliance?",
-			"speakers": ["CCP Swift"],
+			"speakers": ["FC Swift"],
 			"duration": 0
 		},
 		{
@@ -151,7 +151,7 @@
 			"tags": ["fc", "frontier", "lore"],
 			"start": "16:00",
 			"title": "The Frontier - Setting, Story and World",
-			"speakers": ["CCP Dramaturg", "CCP Overload", "CCP Maximum Cats"],
+			"speakers": ["FC Dramaturg", "FC Overload", "FC Maximum Cats"],
 			"duration": 0
 		},
 		{
@@ -161,7 +161,7 @@
 			"tags": ["fc"],
 			"start": "10:00",
 			"title": "Team Security: Taking the War to Bots and RMT",
-			"speakers": ["CCP Arcade", "CCP Stinger"],
+			"speakers": ["FC Arcade", "FC Stinger"],
 			"duration": 0
 		},
 		{
@@ -181,7 +181,7 @@
 			"tags": ["fc"],
 			"start": "13:00",
 			"title": "Predicting the Future… Responsibly",
-			"speakers": ["CCP Excluded"],
+			"speakers": ["FC Excluded"],
 			"duration": 0
 		},
 		{
@@ -191,7 +191,7 @@
 			"tags": ["fc"],
 			"start": "14:00",
 			"title": "R&D - How the Carbon Engine is strengthening the wider EVE Universe",
-			"speakers": ["CCP Rave", "CCP Serpent", "CCP Sasquatch"],
+			"speakers": ["FC Rave", "FC Serpent", "FC Sasquatch"],
 			"duration": 0
 		},
 		{
@@ -201,7 +201,7 @@
 			"tags": ["fc", "esi"],
 			"start": "15:00",
 			"title": "3rd Party ESI Panel",
-			"speakers": ["CCP Stroopwafel", "CCP Pinky", "3rd party developers"],
+			"speakers": ["FC Stroopwafel", "FC Pinky", "3rd party developers"],
 			"duration": 0
 		},
 		{
@@ -210,8 +210,8 @@
 			"roomId": "kaldalon",
 			"tags": ["fc", "esi"],
 			"start": "16:00",
-			"title": "CCP ESI Panel: Supporting Developers at Scale",
-			"speakers": ["CCP Stroopwafel", "CCP Pinky"],
+			"title": "ESI Panel: Supporting Developers at Scale",
+			"speakers": ["FC Stroopwafel", "FC Pinky"],
 			"duration": 0
 		},
 		{
@@ -221,7 +221,7 @@
 			"tags": ["fc"],
 			"start": "12:00",
 			"title": "EVE Orbit: Everything but the Girl.",
-			"speakers": ["CCP Troglodyte", "CCP Graven", "CCP Stroopwafel"],
+			"speakers": ["FC Troglodyte", "FC Graven", "FC Stroopwafel"],
 			"duration": 0
 		},
 		{
@@ -231,7 +231,7 @@
 			"tags": ["fc"],
 			"start": "13:00",
 			"title": "EVE for EVEryone Workshop",
-			"speakers": ["CCP Tara"],
+			"speakers": ["FC Tara"],
 			"duration": 0
 		},
 		{
@@ -251,7 +251,7 @@
 			"tags": ["fc", "frontier"],
 			"start": "15:00",
 			"title": "Architects of the Frontier - Stories from Founder Access",
-			"speakers": ["CCP Goodfella", "Lacal", "Ocky"],
+			"speakers": ["FC Goodfella", "Lacal", "Ocky"],
 			"duration": 0
 		},
 		{
@@ -297,7 +297,7 @@
 			"tags": ["fc"],
 			"start": "10:00",
 			"title": "Opening Ceremony",
-			"speakers": ["CCP Swift", "CCP Lumi"],
+			"speakers": ["FC Swift", "FC Lumi"],
 			"duration": 0,
 			"highlight": true
 		},
@@ -328,7 +328,7 @@
 			"tags": ["fc"],
 			"start": "13:00",
 			"title": "Connecting Designers to the Players",
-			"speakers": ["CCP Blaraka", "CCP Bitman"],
+			"speakers": ["FC Blaraka", "FC Bitman"],
 			"duration": 0
 		},
 		{
@@ -369,7 +369,7 @@
 			"tags": ["fc"],
 			"start": "11:00",
 			"title": "Performance on Trial: Incident Management in EVE Online",
-			"speakers": ["CCP Mayday"],
+			"speakers": ["FC Mayday"],
 			"duration": 0
 		},
 		{
@@ -379,7 +379,7 @@
 			"tags": ["fc"],
 			"start": "12:00",
 			"title": "Project Discovery: A Decade of Citizen Science",
-			"speakers": ["CCP Edelweiss", "Ryan Brinkman"],
+			"speakers": ["FC Edelweiss", "Ryan Brinkman"],
 			"duration": 0
 		},
 		{
@@ -389,7 +389,7 @@
 			"tags": ["fc"],
 			"start": "13:00",
 			"title": "Little Things Panel",
-			"speakers": ["CCP karkur", "CCP Masterplan", "CCP Mercury", "CCP Kestrel", "CCP k1p1"],
+			"speakers": ["FC karkur", "FC Masterplan", "FC Mercury", "FC Kestrel", "FC k1p1"],
 			"duration": 0
 		},
 		{
@@ -399,7 +399,7 @@
 			"tags": ["fc", "frontier"],
 			"start": "14:00",
 			"title": "Sui x EVE Frontier Fireside with Hellmar and Kevin Boon, President of Mysten Labs",
-			"speakers": ["CCP Bowman", "CCP Raudur"],
+			"speakers": ["FC Bowman", "FC Raudur"],
 			"duration": 0
 		},
 		{
@@ -409,7 +409,7 @@
 			"tags": ["fc", "data"],
 			"start": "15:00",
 			"title": "Data Team",
-			"speakers": ["CCP Björn"],
+			"speakers": ["FC Björn"],
 			"duration": 0
 		},
 		{
@@ -446,7 +446,7 @@
 			"tags": ["fc", "vanguard"],
 			"start": "10:00",
 			"title": "Vanguard Keynote",
-			"speakers": ["CCP Collins", "CCP Rattati", "CCP Jayess"],
+			"speakers": ["FC Collins", "FC Rattati", "FC Jayess"],
 			"duration": 0,
 			"highlight": true
 		},
@@ -477,7 +477,7 @@
 			"tags": ["fc", "art"],
 			"start": "13:00",
 			"title": "New Eden In High Fidelity with EVE's Art Team",
-			"speakers": ["CCP Goggi", "CCP Seaslug"],
+			"speakers": ["FC Goggi", "FC Seaslug"],
 			"duration": 0
 		},
 		{
@@ -487,7 +487,7 @@
 			"tags": ["fc", "frontier"],
 			"start": "14:00",
 			"title": "Frontier Keynote",
-			"speakers": ["CCP Goodfella", "CCP Maximum Cats", "CCP Jotunn", "CCP Bowman", "CCP Overload"],
+			"speakers": ["FC Goodfella", "FC Maximum Cats", "FC Jotunn", "FC Bowman", "FC Overload"],
 			"duration": 0,
 			"highlight": true
 		},
@@ -498,7 +498,7 @@
 			"tags": ["fc"],
 			"start": "15:00",
 			"title": "[REDACTED] Expansion Unlocked",
-			"speakers": ["CCP Okami", "CCP klp1", "CCP Nikon", "CCP Havran", "CCP Mercury"],
+			"speakers": ["FC Okami", "FC klp1", "FC Nikon", "FC Havran", "FC Mercury"],
 			"duration": 0
 		},
 		{
@@ -508,7 +508,7 @@
 			"tags": ["fc"],
 			"start": "16:00",
 			"title": "Closing Ceremony",
-			"speakers": ["CCP Jötunn", "CCP Zelus"],
+			"speakers": ["FC Jötunn", "FC Zelus"],
 			"duration": 0,
 			"highlight": true
 		},
@@ -519,7 +519,7 @@
 			"tags": ["fc", "data"],
 			"start": "10:00",
 			"title": "Data Panel",
-			"speakers": ["CCP Björn"],
+			"speakers": ["FC Björn"],
 			"duration": 0
 		},
 		{
@@ -529,7 +529,7 @@
 			"tags": ["fc"],
 			"start": "11:00",
 			"title": "Ship Balance Therapy Session",
-			"speakers": ["CCP Trash Panda", "CCP Kestrel", "CCP Fozzie"],
+			"speakers": ["FC Trash Panda", "FC Kestrel", "FC Fozzie"],
 			"duration": 0
 		},
 		{
@@ -539,7 +539,7 @@
 			"tags": ["fc", "lore"],
 			"start": "12:00",
 			"title": "Evolving Empires: Four Sides to Every Story",
-			"speakers": ["CCP Diegetic", "CCP Burger", "CCP Jayess"],
+			"speakers": ["FC Diegetic", "FC Burger", "FC Jayess"],
 			"duration": 0
 		},
 		{
@@ -549,7 +549,7 @@
 			"tags": ["fc", "frontier"],
 			"start": "13:00",
 			"title": "Travel and Exploration in the EVE Frontier Galaxy",
-			"speakers": ["CCP Relativistic", "CCP ConCron", "CCP Kalirha"],
+			"speakers": ["FC Relativistic", "FC ConCron", "FC Kalirha"],
 			"duration": 0
 		},
 		{
