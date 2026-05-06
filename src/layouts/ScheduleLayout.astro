@@ -1,0 +1,67 @@
+---
+import "../styles/schedule.css";
+
+interface Props {
+	title: string;
+	description?: string;
+	/** Path only, e.g. `/og.png` — becomes absolute using `site` */
+	image?: string;
+	keywords?: string[];
+}
+
+const {
+	title,
+	description = "Conference schedule",
+	image,
+	keywords = [],
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const imageURL = image ? new URL(image, Astro.site) : undefined;
+const jsonLd = {
+	"@context": "https://schema.org",
+	"@type": "WebSite",
+	name: title,
+	description,
+	url: canonicalURL.href,
+};
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="canonical" href={canonicalURL.href} />
+
+		<title>{title}</title>
+		<meta name="title" content={title} />
+		<meta name="description" content={description} />
+		{keywords.length > 0 && <meta name="keywords" content={keywords.join(", ")} />}
+		<meta name="robots" content="index, follow" />
+
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL.href} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:site_name" content="fanfest.eve-online.tools" />
+		<meta property="og:locale" content="en_US" />
+		{imageURL && <meta property="og:image" content={imageURL.href} />}
+
+		<meta name="twitter:card" content={imageURL ? "summary_large_image" : "summary"} />
+		<meta name="twitter:url" content={canonicalURL.href} />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		{imageURL && <meta name="twitter:image" content={imageURL.href} />}
+
+		<script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+	</head>
+	<body class="schedule-body">
+		<div class="schedule-bg" aria-hidden="true"></div>
+		<slot />
+		<footer class="site-footer">Made by stroopwafels with ❤️</footer>
+	</body>
+</html>

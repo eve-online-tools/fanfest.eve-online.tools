@@ -1,0 +1,601 @@
+{
+	"meta": {
+		"conferenceName": "EVE Fanfest",
+		"year": 2026,
+		"timezone": "Atlantic/Reykjavik",
+		"days": ["2026-05-14", "2026-05-15", "2026-05-16"]
+	},
+	"rooms": [
+		{
+			"id": "eldborg",
+			"label": "Main Stage - Eldborg",
+			"shortLabel": "Eldborg",
+			"accent": "#F29100",
+			"headerTextColor": "dark"
+		},
+		{
+			"id": "nordurljos",
+			"label": "Second Stage - Norðurljós",
+			"shortLabel": "Norðurljós",
+			"accent": "#7BA4FF",
+			"headerTextColor": "dark"
+		},
+		{
+			"id": "kaldalon",
+			"label": "Kaldalón",
+			"shortLabel": "Kaldalón",
+			"accent": "#FF007F",
+			"headerTextColor": "dark"
+		},
+		{
+			"id": "thriund",
+			"label": "Þríund",
+			"shortLabel": "Þríund",
+			"accent": "#00E5FF",
+			"headerTextColor": "dark"
+		},
+		{
+			"id": "special",
+			"label": "Special events",
+			"shortLabel": "Special",
+			"accent": "#3d3d4a",
+			"headerTextColor": "light"
+		}
+	],
+	"tags": [
+		{
+			"id": "fc",
+			"label": "FC",
+			"color": "#F29100",
+			"description": "Hosted by Fenris Creations developers."
+		},
+		{
+			"id": "guest",
+			"label": "Guest",
+			"color": "#F0ABFC",
+			"description": "Hosted by guest speakers."
+		},
+		{
+			"id": "player",
+			"label": "Player",
+			"color": "#2DD4BF",
+			"description": "Hosted by player speakers."
+		},
+		{
+			"id": "frontier",
+			"label": "Frontier",
+			"color": "#00E5FF"
+		},
+		{
+			"id": "vanguard",
+			"label": "Vanguard",
+			"color": "#7BA4FF"
+		},
+		{
+			"id": "esi",
+			"label": "ESI",
+			"color": "#A78BFA",
+			"description": "ESI - Third-party development related topics."
+		},
+		{
+			"id": "art",
+			"label": "Art",
+			"color": "#FF007F"
+		},
+		{
+			"id": "lore",
+			"label": "Lore",
+			"color": "#94A3B8"
+		},
+		{
+			"id": "data",
+			"label": "Data",
+			"color": "#34D399"
+		}
+	],
+	"events": [
+		{
+			"id": "ff2026-thu-nordurljos-1000",
+			"day": "2026-05-14",
+			"roomId": "nordurljos",
+			"tags": ["player"],
+			"start": "10:00",
+			"title": "An Emergency Physician's Perspective",
+			"speakers": ["Argus Sorn"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-thu-nordurljos-1200",
+			"day": "2026-05-14",
+			"roomId": "nordurljos",
+			"tags": ["fc"],
+			"start": "12:00",
+			"title": "EVE For EVEryone Panel",
+			"speakers": ["CCP Tara"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-thu-nordurljos-1300",
+			"day": "2026-05-14",
+			"roomId": "nordurljos",
+			"tags": ["player"],
+			"start": "13:00",
+			"title": "Life of a Killmail",
+			"speakers": ["Squizz Caphinator"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-thu-nordurljos-1400",
+			"day": "2026-05-14",
+			"roomId": "nordurljos",
+			"tags": ["fc"],
+			"start": "14:00",
+			"title": "Alliance Leadership Panel: What Goes Into Running an Alliance?",
+			"speakers": ["CCP Swift"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-thu-nordurljos-1500",
+			"day": "2026-05-14",
+			"roomId": "nordurljos",
+			"tags": ["player"],
+			"start": "15:00",
+			"title": "My origins as a small-gang PvPer to becoming a YouTube creator",
+			"speakers": ["Grunt Kado"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-thu-nordurljos-1600",
+			"day": "2026-05-14",
+			"roomId": "nordurljos",
+			"tags": ["fc", "frontier", "lore"],
+			"start": "16:00",
+			"title": "The Frontier - Setting, Story and World",
+			"speakers": ["CCP Dramaturg", "CCP Overload", "CCP Maximum Cats"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-thu-kaldalon-1000",
+			"day": "2026-05-14",
+			"roomId": "kaldalon",
+			"tags": ["fc"],
+			"start": "10:00",
+			"title": "Team Security: Taking the War to Bots and RMT",
+			"speakers": ["CCP Arcade", "CCP Stinger"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-thu-kaldalon-1200",
+			"day": "2026-05-14",
+			"roomId": "kaldalon",
+			"tags": ["player"],
+			"start": "12:00",
+			"title": "AT Fleet Composition and Theory",
+			"speakers": ["Kevin Grumman"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-thu-kaldalon-1300",
+			"day": "2026-05-14",
+			"roomId": "kaldalon",
+			"tags": ["fc"],
+			"start": "13:00",
+			"title": "Predicting the Future… Responsibly",
+			"speakers": ["CCP Excluded"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-thu-kaldalon-1400",
+			"day": "2026-05-14",
+			"roomId": "kaldalon",
+			"tags": ["fc"],
+			"start": "14:00",
+			"title": "R&D - How the Carbon Engine is strengthening the wider EVE Universe",
+			"speakers": ["CCP Rave", "CCP Serpent", "CCP Sasquatch"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-thu-kaldalon-1500",
+			"day": "2026-05-14",
+			"roomId": "kaldalon",
+			"tags": ["fc", "esi"],
+			"start": "15:00",
+			"title": "3rd Party ESI Panel",
+			"speakers": ["CCP Stroopwafel", "CCP Pinky", "3rd party developers"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-thu-kaldalon-1600",
+			"day": "2026-05-14",
+			"roomId": "kaldalon",
+			"tags": ["fc", "esi"],
+			"start": "16:00",
+			"title": "CCP ESI Panel: Supporting Developers at Scale",
+			"speakers": ["CCP Stroopwafel", "CCP Pinky"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-thu-thriund-1200",
+			"day": "2026-05-14",
+			"roomId": "thriund",
+			"tags": ["fc"],
+			"start": "12:00",
+			"title": "EVE Orbit: Everything but the Girl.",
+			"speakers": ["CCP Troglodyte", "CCP Graven", "CCP Stroopwafel"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-thu-thriund-1300",
+			"day": "2026-05-14",
+			"roomId": "thriund",
+			"tags": ["fc"],
+			"start": "13:00",
+			"title": "EVE for EVEryone Workshop",
+			"speakers": ["CCP Tara"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-thu-thriund-1400",
+			"day": "2026-05-14",
+			"roomId": "thriund",
+			"tags": ["player"],
+			"start": "14:00",
+			"title": "Exploring the psychology behind risk vs. reward",
+			"speakers": ["Susurrus Synaesthesia"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-thu-thriund-1500",
+			"day": "2026-05-14",
+			"roomId": "thriund",
+			"tags": ["fc", "frontier"],
+			"start": "15:00",
+			"title": "Architects of the Frontier - Stories from Founder Access",
+			"speakers": ["CCP Goodfella", "Lacal", "Ocky"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-thu-special-paint-1200",
+			"day": "2026-05-14",
+			"roomId": "special",
+			"tags": [],
+			"start": "12:00",
+			"title": "Miniature Painting - Pop Up",
+			"duration": 0
+		},
+		{
+			"id": "ff2026-thu-special-paint-1400",
+			"day": "2026-05-14",
+			"roomId": "special",
+			"tags": [],
+			"start": "14:00",
+			"title": "Miniature Painting - Pop Up",
+			"duration": 0
+		},
+		{
+			"id": "ff2026-thu-special-lava-1500",
+			"day": "2026-05-14",
+			"roomId": "special",
+			"tags": [],
+			"start": "15:00",
+			"title": "Lava Tunnel EVE experience + GIN pre mixer",
+			"duration": 270
+		},
+		{
+			"id": "ff2026-thu-special-charity-1900",
+			"day": "2026-05-14",
+			"roomId": "special",
+			"tags": [],
+			"start": "19:00",
+			"title": "Charity Dinner",
+			"duration": 0
+		},
+		{
+			"id": "ff2026-fri-eldborg-1000",
+			"day": "2026-05-15",
+			"roomId": "eldborg",
+			"tags": ["fc"],
+			"start": "10:00",
+			"title": "Opening Ceremony",
+			"speakers": ["CCP Swift", "CCP Lumi"],
+			"duration": 0,
+			"highlight": true
+		},
+		{
+			"id": "ff2026-fri-eldborg-1100",
+			"day": "2026-05-15",
+			"roomId": "eldborg",
+			"tags": ["player"],
+			"start": "11:00",
+			"title": "Politics, Patches, and Panic - What makes EVE markets move?",
+			"speakers": ["The Oz"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-fri-eldborg-1200",
+			"day": "2026-05-15",
+			"roomId": "eldborg",
+			"tags": ["guest"],
+			"start": "12:00",
+			"title": "How to Die in Space: A Choose-Your-Own Adventure That You Probably Won't Survive",
+			"speakers": ["Paul M. Sutters"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-fri-eldborg-1300",
+			"day": "2026-05-15",
+			"roomId": "eldborg",
+			"tags": ["fc"],
+			"start": "13:00",
+			"title": "Connecting Designers to the Players",
+			"speakers": ["CCP Blaraka", "CCP Bitman"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-fri-eldborg-1445",
+			"day": "2026-05-15",
+			"roomId": "eldborg",
+			"tags": ["guest"],
+			"start": "14:45",
+			"title": "Space is beautiful. Space is dangerous. And space doesn't care if you're ready.",
+			"speakers": ["Dr. Beth Healey"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-fri-eldborg-1545",
+			"day": "2026-05-15",
+			"roomId": "eldborg",
+			"tags": ["player", "art"],
+			"start": "15:45",
+			"title": "Creating Cinematic Content",
+			"speakers": ["Warlock Industries"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-fri-eldborg-1630",
+			"day": "2026-05-15",
+			"roomId": "eldborg",
+			"tags": ["fc"],
+			"start": "16:30",
+			"title": "EVE Fanfest Keynote",
+			"speakers": [],
+			"duration": 0,
+			"highlight": true
+		},
+		{
+			"id": "ff2026-fri-nordurljos-1100",
+			"day": "2026-05-15",
+			"roomId": "nordurljos",
+			"tags": ["fc"],
+			"start": "11:00",
+			"title": "Performance on Trial: Incident Management in EVE Online",
+			"speakers": ["CCP Mayday"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-fri-nordurljos-1200",
+			"day": "2026-05-15",
+			"roomId": "nordurljos",
+			"tags": ["fc"],
+			"start": "12:00",
+			"title": "Project Discovery: A Decade of Citizen Science",
+			"speakers": ["CCP Edelweiss", "Ryan Brinkman"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-fri-nordurljos-1300",
+			"day": "2026-05-15",
+			"roomId": "nordurljos",
+			"tags": ["fc"],
+			"start": "13:00",
+			"title": "Little Things Panel",
+			"speakers": ["CCP karkur", "CCP Masterplan", "CCP Mercury", "CCP Kestrel", "CCP k1p1"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-fri-nordurljos-1400",
+			"day": "2026-05-15",
+			"roomId": "nordurljos",
+			"tags": ["fc", "frontier"],
+			"start": "14:00",
+			"title": "Sui x EVE Frontier Fireside with Hellmar and Kevin Boon, President of Mysten Labs",
+			"speakers": ["CCP Bowman", "CCP Raudur"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-fri-nordurljos-1500",
+			"day": "2026-05-15",
+			"roomId": "nordurljos",
+			"tags": ["fc", "data"],
+			"start": "15:00",
+			"title": "Data Team",
+			"speakers": ["CCP Björn"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-fri-special-paint-1200",
+			"day": "2026-05-15",
+			"roomId": "special",
+			"tags": [],
+			"start": "12:00",
+			"title": "Miniature Painting - Pop Up",
+			"duration": 0
+		},
+		{
+			"id": "ff2026-fri-special-paint-1400",
+			"day": "2026-05-15",
+			"roomId": "special",
+			"tags": [],
+			"start": "14:00",
+			"title": "Miniature Painting - Pop Up",
+			"duration": 0
+		},
+		{
+			"id": "ff2026-fri-outside-pub-1930",
+			"day": "2026-05-15",
+			"roomId": "special",
+			"tags": [],
+			"start": "19:30",
+			"title": "Pub Crawl",
+			"duration": 0
+		},
+		{
+			"id": "ff2026-sat-eldborg-1000",
+			"day": "2026-05-16",
+			"roomId": "eldborg",
+			"tags": ["fc", "vanguard"],
+			"start": "10:00",
+			"title": "Vanguard Keynote",
+			"speakers": ["CCP Collins", "CCP Rattati", "CCP Jayess"],
+			"duration": 0,
+			"highlight": true
+		},
+		{
+			"id": "ff2026-sat-eldborg-1100",
+			"day": "2026-05-16",
+			"roomId": "eldborg",
+			"tags": ["player", "lore"],
+			"start": "11:00",
+			"title": "Blood, Ink, and immortality: A Capsuleer's Edda",
+			"speakers": ["Mark Crowther"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-sat-eldborg-1200",
+			"day": "2026-05-16",
+			"roomId": "eldborg",
+			"tags": ["guest"],
+			"start": "12:00",
+			"title": "The Infinite Game",
+			"speakers": ["Fireside Chat"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-sat-eldborg-1300",
+			"day": "2026-05-16",
+			"roomId": "eldborg",
+			"tags": ["fc", "art"],
+			"start": "13:00",
+			"title": "New Eden In High Fidelity with EVE's Art Team",
+			"speakers": ["CCP Goggi", "CCP Seaslug"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-sat-eldborg-1400",
+			"day": "2026-05-16",
+			"roomId": "eldborg",
+			"tags": ["fc", "frontier"],
+			"start": "14:00",
+			"title": "Frontier Keynote",
+			"speakers": ["CCP Goodfella", "CCP Maximum Cats", "CCP Jotunn", "CCP Bowman", "CCP Overload"],
+			"duration": 0,
+			"highlight": true
+		},
+		{
+			"id": "ff2026-sat-eldborg-1500",
+			"day": "2026-05-16",
+			"roomId": "eldborg",
+			"tags": ["fc"],
+			"start": "15:00",
+			"title": "[REDACTED] Expansion Unlocked",
+			"speakers": ["CCP Okami", "CCP klp1", "CCP Nikon", "CCP Havran", "CCP Mercury"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-sat-eldborg-1600",
+			"day": "2026-05-16",
+			"roomId": "eldborg",
+			"tags": ["fc"],
+			"start": "16:00",
+			"title": "Closing Ceremony",
+			"speakers": ["CCP Jötunn", "CCP Zelus"],
+			"duration": 0,
+			"highlight": true
+		},
+		{
+			"id": "ff2026-sat-nordurljos-1000",
+			"day": "2026-05-16",
+			"roomId": "nordurljos",
+			"tags": ["fc", "data"],
+			"start": "10:00",
+			"title": "Data Panel",
+			"speakers": ["CCP Björn"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-sat-nordurljos-1100",
+			"day": "2026-05-16",
+			"roomId": "nordurljos",
+			"tags": ["fc"],
+			"start": "11:00",
+			"title": "Ship Balance Therapy Session",
+			"speakers": ["CCP Trash Panda", "CCP Kestrel", "CCP Fozzie"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-sat-nordurljos-1200",
+			"day": "2026-05-16",
+			"roomId": "nordurljos",
+			"tags": ["fc", "lore"],
+			"start": "12:00",
+			"title": "Evolving Empires: Four Sides to Every Story",
+			"speakers": ["CCP Diegetic", "CCP Burger", "CCP Jayess"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-sat-nordurljos-1300",
+			"day": "2026-05-16",
+			"roomId": "nordurljos",
+			"tags": ["fc", "frontier"],
+			"start": "13:00",
+			"title": "Travel and Exploration in the EVE Frontier Galaxy",
+			"speakers": ["CCP Relativistic", "CCP ConCron", "CCP Kalirha"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-sat-special-paint-1200",
+			"day": "2026-05-16",
+			"roomId": "special",
+			"tags": [],
+			"start": "12:00",
+			"title": "Miniature Painting - Pop Up",
+			"duration": 0
+		},
+		{
+			"id": "ff2026-sat-special-paint-1400",
+			"day": "2026-05-16",
+			"roomId": "special",
+			"tags": [],
+			"start": "14:00",
+			"title": "Miniature Painting - Pop Up",
+			"duration": 0
+		},
+		{
+			"id": "ff2026-sat-special-mixer-1900",
+			"day": "2026-05-16",
+			"roomId": "special",
+			"tags": [],
+			"start": "19:00",
+			"title": "Mixer and Drinks Powered by WorldLine",
+			"duration": 0
+		},
+		{
+			"id": "ff2026-sat-special-awards-1930",
+			"day": "2026-05-16",
+			"roomId": "special",
+			"tags": [],
+			"start": "19:30",
+			"title": "Creator Awards",
+			"duration": 0
+		},
+		{
+			"id": "ff2026-sat-special-party-2000",
+			"day": "2026-05-16",
+			"roomId": "special",
+			"tags": [],
+			"start": "20:00",
+			"title": "Party at the Top of the World at Harpa sponsored by Sui",
+			"duration": 0
+		}
+	]
+}

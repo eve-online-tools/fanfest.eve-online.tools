@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://fanfest.eve-online.tools/sitemap-index.xml

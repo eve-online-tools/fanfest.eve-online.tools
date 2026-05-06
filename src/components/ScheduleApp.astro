@@ -1,0 +1,219 @@
+---
+import type { EnrichedEvent } from "../types/schedule";
+import type { ClientBootstrap, EnrichedSchedule } from "../lib/schedule";
+import { formatDayHeading } from "../lib/formatDay";
+
+interface Props {
+	enriched: EnrichedSchedule;
+	bootstrap: ClientBootstrap;
+}
+
+const { enriched, bootstrap } = Astro.props;
+const { meta, rooms, tags } = enriched.config;
+const tz = meta.timezone;
+
+function headClass(room: (typeof rooms)[number]): string {
+	return room.headerTextColor === "light" ? "room-column__head--light" : "room-column__head--dark";
+}
+
+function eventsFor(day: string, roomId: string): EnrichedEvent[] {
+	return enriched.byDayRoom.get(day)?.get(roomId) ?? [];
+}
+
+const bootstrapEncoded = encodeURIComponent(JSON.stringify(bootstrap));
+---
+
+<div class="schedule-shell" id="schedule-app" data-timezone={tz} data-bootstrap={bootstrapEncoded}>
+	<header class="schedule-header">
+		<h1 class="schedule-header__title">{meta.conferenceName} {meta.year}</h1>
+	</header>
+
+	<nav class="app-nav" aria-label="Primary">
+		<div class="app-nav__tabs">
+			<button type="button" id="nav-favorites" aria-pressed="false" data-view="favorites" aria-label="Favorites" class="app-nav__tab--icon">
+				<svg class="app-nav__star" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+					<path d="M12 3.2l2.35 5.24 5.76.69-4.24 3.88 1.12 5.69L12 15.9l-5.99 2.8 1.12-5.69L2.89 9.13l5.76-.69L12 3.2z"></path>
+				</svg>
+			</button>
+			<button type="button" id="nav-schedule" aria-pressed="true" data-view="schedule">Schedule</button>
+			<button type="button" id="nav-today" aria-pressed="false" data-view="today">Today</button>
+		</div>
+		<button
+			type="button"
+			id="nav-filters"
+			class="app-nav__filter"
+			aria-expanded="false"
+			aria-controls="filter-panel"
+			aria-label="Open filters"
+		>
+			<svg class="app-nav__filter-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+				<path d="M4 6h16M7 12h10M10 18h4"></path>
+				<circle cx="9" cy="6" r="1.5" fill="currentColor" stroke="none"></circle>
+				<circle cx="15" cy="12" r="1.5" fill="currentColor" stroke="none"></circle>
+				<circle cx="12" cy="18" r="1.5" fill="currentColor" stroke="none"></circle>
+			</svg>
+		</button>
+	</nav>
+
+	<div id="filter-panel" class="filter-panel" hidden>
+		<div class="filter-panel__inner">
+			<div>
+				<span class="filters__label">Tags</span>
+				<p class="filter-panel__hint">Tap tags to show matching talks (any selected).</p>
+				<div class="tag-chips" id="tag-chips">
+					{tags.map((t) => (
+						<button type="button" class="tag-chip" data-tag-id={t.id} data-active="false" style={t.color ? `--pill:${t.color}` : undefined}>
+							{t.label}
+						</button>
+					))}
+				</div>
+			</div>
+			<div>
+				<span class="filters__label">Rooms</span>
+				<p class="filter-panel__hint">Tap rooms to narrow columns; none selected shows all.</p>
+				<div class="tag-chips" id="room-chips">
+					{rooms.map((r) => (
+						<button type="button" class="tag-chip" data-room-id={r.id} data-active="false">
+							{r.shortLabel ?? r.label}
+						</button>
+					))}
+				</div>
+			</div>
+			<p class="filter-empty" id="filter-empty" data-visible="false">No events match these filters for this day.</p>
+		</div>
+	</div>
+
+	<section id="view-schedule" class="view-panel" aria-label="Full schedule">
+		<div class="day-carousel">
+			<div class="day-carousel__strip" id="day-carousel-strip">
+				{
+					meta.days.map((day) => (
+						<section class="day-carousel__page" data-day={day} aria-label={formatDayHeading(day, tz)}>
+							<div class="day-carousel__heading-wrap">
+								<h2 class="day-carousel__heading" draggable="false">{formatDayHeading(day, tz)}</h2>
+							</div>
+							<div class="room-strip" data-room-strip>
+								{rooms
+									.filter((room) => eventsFor(day, room.id).length > 0)
+									.map((room) => {
+										const list = eventsFor(day, room.id);
+										return (
+										<div
+											class="room-column"
+											data-room-column
+											data-room-id={room.id}
+											data-day={day}
+										>
+											<div
+												class:list={["room-column__head", headClass(room)]}
+												style={`background:${room.accent}`}
+											>
+												{room.label}
+											</div>
+											<div class="room-column__body" data-room-body>
+												{list.map((ev) => (
+														<article
+															class:list={["event-card", ev.highlight && "event-card--highlight"]}
+															style={ev.highlight ? `--room-accent:${room.accent}` : undefined}
+															data-event-card
+															data-event-id={ev.id}
+															data-day={ev.day}
+															data-room-id={ev.roomId}
+															data-tags={ev.tags.join(" ")}
+															data-start-min={ev.startMinutes}
+															data-end-min={ev.endMinutes}
+														>
+															<div class="event-card__layout">
+																<div class="event-card__time-stack">
+																	<div class="event-card__time">
+																		{ev.end ? (
+																			<>
+																				<span class="event-card__time-part">{ev.start}</span>
+																				<span class="event-card__time-part">{ev.end}</span>
+																			</>
+																		) : (
+																			ev.start
+																		)}
+																	</div>
+																	<button type="button" class="event-card__fav" data-favorite-toggle aria-label="Favorite" data-event-id={ev.id}>
+																		★
+																	</button>
+																</div>
+																<div class="event-card__main">
+																		<h3 class="event-card__title">{ev.title}</h3>
+																		{ev.speakers && ev.speakers.length > 0 ? (
+																			<p class="event-card__speakers" style={`color:${room.accent}`}>
+																				{ev.speakers.join(" · ")}
+																			</p>
+																		) : null}
+																		{ev.notes ? <p class="event-card__speakers" style="color:var(--muted)">{ev.notes}</p> : null}
+																		{ev.tags.length > 0 ? (
+																			<div class="event-card__tags">
+																				{ev.tags.map((tid) => {
+																					const td = tags.find((x) => x.id === tid);
+																					const label = td?.label ?? tid;
+																					const style = td?.color ? `color:${td.color};border:1px solid rgba(255,255,255,0.12)` : undefined;
+																					return td?.description ? (
+																						<button
+																							type="button"
+																							class="event-tag-pill"
+																							style={style}
+																							data-tag-description={td.description}
+																							aria-label={`${label}: show description`}
+																						>
+																							{label}
+																						</button>
+																					) : (
+																						<span class="event-tag-pill" style={style}>
+																							{label}
+																						</span>
+																					);
+																				})}
+																			</div>
+																		) : null}
+																</div>
+															</div>
+														</article>
+													))}
+											</div>
+										</div>
+										);
+									})}
+							</div>
+						</section>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<section id="view-favorites" class="view-panel" hidden aria-label="Favorite sessions">
+		<div class="day-carousel day-carousel--favorites">
+			<div class="day-carousel__strip" id="favorites-day-strip"></div>
+		</div>
+	</section>
+
+	<section id="view-today" class="view-panel" hidden aria-label="Today guide">
+		<div id="today-root">
+			<p class="off-season" id="today-placeholder">Loading…</p>
+		</div>
+	</section>
+
+	<div id="tag-desc-popover" class="tag-desc-popover" popover="auto" role="tooltip"></div>
+</div>
+
+<script>
+	import { initScheduleUi } from "../scripts/schedule-ui";
+	import type { ClientBootstrap } from "../lib/schedule";
+
+	const root = document.getElementById("schedule-app");
+	const encoded = root?.dataset.bootstrap ?? "";
+	if (encoded) {
+		try {
+			const bootstrap = JSON.parse(decodeURIComponent(encoded)) as ClientBootstrap;
+			initScheduleUi(bootstrap);
+		} catch (e) {
+			console.error(e);
+		}
+	}
+</script>

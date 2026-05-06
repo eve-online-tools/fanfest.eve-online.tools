@@ -1,0 +1,25 @@
+---
+import ScheduleLayout from "../layouts/ScheduleLayout.astro";
+import ScheduleApp from "../components/ScheduleApp.astro";
+import rawSchedule from "../data/schedule.json";
+import { parseAndValidateSchedule } from "../lib/scheduleSchema";
+import { buildEnrichedSchedule, toClientBootstrap } from "../lib/schedule";
+
+const config = parseAndValidateSchedule(rawSchedule);
+const enriched = buildEnrichedSchedule(config);
+const bootstrap = toClientBootstrap(enriched);
+const title = `${config.meta.conferenceName} ${config.meta.year} — Schedule`;
+const description = `Browse the ${config.meta.conferenceName} ${config.meta.year} conference schedule: stages, sessions, and times in Reykjavík (${config.meta.timezone}).`;
+const keywords = [
+	"EVE Online",
+	"EVE Fanfest",
+	`Fanfest ${config.meta.year}`,
+	"conference schedule",
+	"Reykjavík",
+	"CCP Games",
+];
+---
+
+<ScheduleLayout title={title} description={description} keywords={keywords}>
+	<ScheduleApp enriched={enriched} bootstrap={bootstrap} />
+</ScheduleLayout>

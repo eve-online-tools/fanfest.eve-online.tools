@@ -1,0 +1,9 @@
+{
+    "$schema": "./node_modules/wrangler/config-schema.json",
+    "name": "fanfest-eve-online-tools",
+    "compatibility_date": "2026-05-06",
+    "compatibility_flags": ["global_fetch_strictly_public"],
+    "assets": {
+        "directory": "./dist"
+    }
+}
