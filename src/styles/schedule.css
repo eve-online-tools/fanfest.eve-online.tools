@@ -142,6 +142,10 @@ html {
   display: block;
 }
 
+#nav-favorites:not([data-has-favorites]) .app-nav__star {
+  color: rgba(160, 160, 168, 0.38);
+}
+
 .app-nav__tabs button[aria-pressed="true"] {
   background: rgba(123, 164, 255, 0.18);
   color: var(--text);
@@ -190,6 +194,14 @@ html {
 
 .app-nav__filter-icon {
   display: block;
+}
+
+.app-nav__filter[data-filters-active]:not([aria-expanded="true"]) {
+  color: rgba(255, 0, 127, 0.95);
+}
+
+.app-nav__filter[data-filters-active]:not([aria-expanded="true"]):hover {
+  color: #ff4da6;
 }
 
 .view-panel[hidden] {
@@ -292,20 +304,21 @@ html {
   }
 }
 
-/* ≤767px: one day per viewport, rooms scroll inside the page (original mobile UX). */
+/* One horizontal scroller: outer strip only; day pages grow with room columns. */
 .day-carousel__page {
-  flex: 0 0 100%;
+  flex: 0 0 auto;
   box-sizing: border-box;
-  width: 100%;
-  max-width: 100%;
+  min-width: 100%;
+  width: max-content;
+  max-width: none;
   scroll-snap-align: start;
-  scroll-snap-stop: always;
+  scroll-snap-stop: normal;
   padding: 0 0.75rem 0.5rem;
 }
 
 .day-carousel__heading-wrap {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
+  width: 100%;
+  margin-left: 0;
   margin-bottom: 0.5rem;
   text-align: center;
 }
@@ -333,11 +346,10 @@ html {
   letter-spacing: 0.1em;
   color: var(--muted);
   margin: 0;
-  /* Avoid horizontal swipe / text-drag on dates scrolling the day carousel */
   user-select: none;
   -webkit-user-select: none;
   -webkit-user-drag: none;
-  touch-action: pan-y pinch-zoom;
+  touch-action: auto;
   cursor: default;
 }
 
@@ -345,51 +357,72 @@ html {
   display: flex;
   flex-wrap: nowrap;
   gap: 0.75rem;
-  overflow-x: auto;
+  overflow: visible;
   overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  touch-action: pan-x pinch-zoom;
+  width: max-content;
+  max-width: none;
+  scroll-snap-type: none;
+  touch-action: auto;
   padding-bottom: 0.35rem;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
 }
 
-.room-strip::-webkit-scrollbar {
-  display: none;
-  width: 0;
-  height: 0;
-}
+/* Softer snap when panning within a wide day on touch / small viewports. */
+@media (max-width: 767.98px) {
+  .day-carousel__strip {
+    scroll-snap-type: x proximity;
+  }
 
-/* ≥768px: day pages grow with all rooms; only .day-carousel__strip scrolls horizontally. */
-@media (min-width: 768px) {
   .day-carousel__page {
-    flex: 0 0 auto;
-    min-width: 100%;
-    width: max-content;
-    max-width: none;
+    display: grid;
+    grid-template-rows: auto 1fr;
   }
 
   .day-carousel__heading-wrap {
-    width: 100%;
-    margin-left: 0;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100vw;
+    margin-left: -0.75rem;
+    padding: 0.15rem 0.75rem 0.5rem;
+    background: linear-gradient(
+      180deg,
+      var(--bg) 0%,
+      rgba(5, 5, 8, 0.92) 65%,
+      transparent 100%
+    );
+  }
+}
+
+@media (min-width: 768px) {
+  #day-carousel-strip,
+  #favorites-day-strip {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(160, 160, 168, 0.45) rgba(255, 255, 255, 0.06);
+    -ms-overflow-style: auto;
   }
 
-  .day-carousel__heading {
-    touch-action: auto;
+  #day-carousel-strip::-webkit-scrollbar,
+  #favorites-day-strip::-webkit-scrollbar {
+    display: block;
+    height: 10px;
   }
 
-  .room-strip {
-    overflow: visible;
-    width: max-content;
-    max-width: none;
-    scroll-snap-type: none;
-    touch-action: auto;
+  #day-carousel-strip::-webkit-scrollbar-track,
+  #favorites-day-strip::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 5px;
   }
 
-  .room-column {
-    scroll-snap-align: none;
-    scroll-snap-stop: normal;
+  #day-carousel-strip::-webkit-scrollbar-thumb,
+  #favorites-day-strip::-webkit-scrollbar-thumb {
+    background: rgba(160, 160, 168, 0.45);
+    border-radius: 5px;
+  }
+
+  #day-carousel-strip::-webkit-scrollbar-thumb:hover,
+  #favorites-day-strip::-webkit-scrollbar-thumb:hover {
+    background: rgba(160, 160, 168, 0.65);
   }
 }
 
@@ -419,7 +452,7 @@ html {
 .room-column {
   flex: 0 0 min(85vw, 22rem);
   max-width: min(85vw, 22rem);
-  scroll-snap-align: start;
+  scroll-snap-align: none;
   scroll-snap-stop: normal;
   display: flex;
   flex-direction: column;
@@ -523,6 +556,24 @@ html {
   pointer-events: none;
   background: color-mix(in srgb, var(--room-accent, #7ba4ff) 55%, transparent);
   opacity: 0.85;
+}
+
+.event-card--favorite-conflict {
+  position: relative;
+  isolation: isolate;
+}
+
+.event-card--favorite-conflict::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35rem;
+  bottom: 0.35rem;
+  width: 3px;
+  border-radius: 2px;
+  pointer-events: none;
+  background: var(--danger);
+  opacity: 0.9;
 }
 
 .event-card__row {

@@ -3,6 +3,9 @@ import type { ClientBootstrap } from "../lib/schedule";
 import type { EnrichedEvent, Room, TagDefinition } from "../types/schedule";
 
 const FAV_KEY = "fanfest-schedule-favorites";
+const FILTER_KEY = "fanfest-schedule-filters";
+
+type StoredFilters = { tagIds: string[]; roomIds: string[] };
 /** `special` room only appears on Today when a session overlaps this window from “now”. */
 const SPECIAL_ROOM_TODAY_WINDOW_MS = 6 * 60 * 60 * 1000;
 
@@ -87,6 +90,11 @@ function saveFavoriteIds(ids: Set<string>) {
   localStorage.setItem(FAV_KEY, JSON.stringify([...ids]));
 }
 
+function syncFavoriteNavButton(favs: Set<string>) {
+  const btn = document.getElementById("nav-favorites");
+  btn?.toggleAttribute("data-has-favorites", favs.size > 0);
+}
+
 function getZonedParts(
   date: Date,
   timeZone: string,
@@ -110,32 +118,124 @@ function getZonedParts(
   return { ymd, minutes: hh * 60 + mm };
 }
 
-/** Matches `schedule.css`: nested room scroll for max-width 767.98px, wide strip from 768px. */
-function scheduleLayoutIsNarrow(): boolean {
-  return globalThis.matchMedia?.("(max-width: 767.98px)")?.matches ?? false;
+function parseStoredFilters(): StoredFilters | null {
+  try {
+    const raw = localStorage.getItem(FILTER_KEY);
+    if (!raw) return null;
+    const o = JSON.parse(raw) as unknown;
+    if (!o || typeof o !== "object") return null;
+    const tagIds = (o as { tagIds?: unknown }).tagIds;
+    const roomIds = (o as { roomIds?: unknown }).roomIds;
+    return {
+      tagIds: Array.isArray(tagIds)
+        ? tagIds.filter((x): x is string => typeof x === "string")
+        : [],
+      roomIds: Array.isArray(roomIds)
+        ? roomIds.filter((x): x is string => typeof x === "string")
+        : [],
+    };
+  } catch {
+    return null;
+  }
 }
 
-/** If “today” in con timezone is a con day, scroll the schedule day carousel to that page. */
-function scrollScheduleCarouselToTodayIfNeeded(bootstrap: ClientBootstrap) {
+function saveFilterState(tags: Set<string>, rooms: Set<string>) {
+  const payload: StoredFilters = {
+    tagIds: [...tags],
+    roomIds: [...rooms],
+  };
+  localStorage.setItem(FILTER_KEY, JSON.stringify(payload));
+}
+
+function restoreFilterChipsFromLocalStorage() {
+  const stored = parseStoredFilters();
+  if (!stored) return;
+  document
+    .querySelectorAll<HTMLButtonElement>(".tag-chip[data-tag-id]")
+    .forEach((b) => {
+      const id = b.dataset.tagId ?? "";
+      b.dataset.active = stored.tagIds.includes(id) ? "true" : "false";
+    });
+  document
+    .querySelectorAll<HTMLButtonElement>(".tag-chip[data-room-id]")
+    .forEach((b) => {
+      const id = b.dataset.roomId ?? "";
+      b.dataset.active = stored.roomIds.includes(id) ? "true" : "false";
+    });
+}
+
+function syncFilterNavButton() {
+  const btn = document.getElementById("nav-filters");
+  if (!btn) return;
+  const active = readSelectedTags().size > 0 || readSelectedRooms().size > 0;
+  btn.toggleAttribute("data-filters-active", active);
+}
+
+/** Sum of page widths before `ymd` in `#day-carousel-strip`. */
+function scrollScheduleStripToDay(bootstrap: ClientBootstrap, ymd: string) {
   const strip = document.getElementById("day-carousel-strip");
   if (!strip) return;
-  const { ymd } = getZonedParts(new Date(), bootstrap.meta.timezone);
   const idx = bootstrap.days.indexOf(ymd);
-  if (idx <= 0) return;
-
-  if (scheduleLayoutIsNarrow()) {
-    const pageW = strip.clientWidth;
-    if (pageW <= 0) return;
-    strip.scrollLeft = idx * pageW;
-    return;
-  }
-
-  const pages = strip.querySelectorAll<HTMLElement>(".day-carousel__page[data-day]");
+  if (idx < 0) return;
+  const pages = strip.querySelectorAll<HTMLElement>(
+    ".day-carousel__page[data-day]",
+  );
   let left = 0;
   for (let i = 0; i < idx && i < pages.length; i++) {
     left += pages[i]!.offsetWidth;
   }
   strip.scrollLeft = left;
+}
+
+/** If “today” in con timezone is a con day, scroll the schedule day carousel to that page. */
+function scrollScheduleCarouselToTodayIfNeeded(bootstrap: ClientBootstrap) {
+  const { ymd } = getZonedParts(new Date(), bootstrap.meta.timezone);
+  const idx = bootstrap.days.indexOf(ymd);
+  if (idx <= 0) return;
+  scrollScheduleStripToDay(bootstrap, ymd);
+}
+
+function findRoomByLocationQuery(rooms: Room[], q: string): Room | undefined {
+  const lower = q.trim().toLowerCase();
+  if (!lower) return undefined;
+  return rooms.find(
+    (r) =>
+      r.id.toLowerCase() === lower ||
+      r.label.toLowerCase() === lower ||
+      r.shortLabel?.toLowerCase() === lower,
+  );
+}
+
+function findTagByQuery(tags: TagDefinition[], q: string): TagDefinition | undefined {
+  const lower = q.trim().toLowerCase();
+  if (!lower) return undefined;
+  return tags.find(
+    (t) => t.id.toLowerCase() === lower || t.label.toLowerCase() === lower,
+  );
+}
+
+/** Single-room deep link: only `room.id` chip active; empty clears room filters. */
+function applyLocationQueryParam(bootstrap: ClientBootstrap, q: string) {
+  const room = findRoomByLocationQuery(bootstrap.rooms, q);
+  if (!room && q.trim() !== "") return;
+  document
+    .querySelectorAll<HTMLButtonElement>(".tag-chip[data-room-id]")
+    .forEach((b) => {
+      const id = b.dataset.roomId ?? "";
+      b.dataset.active = room && id === room.id ? "true" : "false";
+    });
+}
+
+/** Single-tag deep link: only `tag.id` chip active; empty clears tag filters. */
+function applyTagQueryParam(bootstrap: ClientBootstrap, q: string) {
+  const tag = findTagByQuery(bootstrap.tags, q);
+  if (!tag && q.trim() !== "") return;
+  document
+    .querySelectorAll<HTMLButtonElement>(".tag-chip[data-tag-id]")
+    .forEach((b) => {
+      const id = b.dataset.tagId ?? "";
+      b.dataset.active = tag && id === tag.id ? "true" : "false";
+    });
 }
 
 function roomById(rooms: Room[], id: string): Room | undefined {
@@ -353,6 +453,8 @@ function applyScheduleFilters() {
     ).length;
     hint.dataset.visible = total > 0 && visible === 0 ? "true" : "false";
   }
+
+  syncFilterNavButton();
 }
 
 function applyNowHighlights(bootstrap: ClientBootstrap, now: Date) {
@@ -385,6 +487,7 @@ function wireFavorites(bootstrap: ClientBootstrap) {
 
   let favs = parseFavoriteIds();
   syncFavoriteToggleButtons(favs);
+  syncFavoriteNavButton(favs);
 
   shell.addEventListener("click", (e) => {
     const btn = (e.target as HTMLElement).closest<HTMLButtonElement>(
@@ -398,6 +501,7 @@ function wireFavorites(bootstrap: ClientBootstrap) {
     else favs.add(id);
     saveFavoriteIds(favs);
     syncFavoriteToggleButtons(favs);
+    syncFavoriteNavButton(favs);
     const favView = document.getElementById("view-favorites");
     if (favView && !favView.hidden) renderFavoritesView(bootstrap);
   });
@@ -425,6 +529,7 @@ function wireFilters(bootstrap: ClientBootstrap) {
   const rerender = () => {
     applyScheduleFilters();
     applyNowHighlights(bootstrap, new Date());
+    saveFilterState(readSelectedTags(), readSelectedRooms());
   };
   wireChipToggles(rerender);
   rerender();
@@ -499,28 +604,14 @@ function wireNav(bootstrap: ClientBootstrap) {
   bToday?.addEventListener("click", () => go("today"));
 }
 
-/** Narrow: nested room strip may scroll; wide: only the day strip scrolls (see schedule.css). */
-function horizontalStripFromTarget(target: EventTarget | null): HTMLElement | null {
+/** Horizontal pan targets only the day strips (see schedule.css: single outer scroller). */
+function horizontalStripFromTarget(
+  target: EventTarget | null,
+): HTMLElement | null {
   if (!target || !(target instanceof Element)) return null;
 
   const dayStrip = target.closest("#day-carousel-strip, #favorites-day-strip");
-  const roomStrip = target.closest("[data-room-strip]");
   const overflows = (el: HTMLElement) => el.scrollWidth > el.clientWidth + 1;
-
-  if (scheduleLayoutIsNarrow()) {
-    if (
-      roomStrip instanceof HTMLElement &&
-      dayStrip instanceof HTMLElement &&
-      dayStrip.contains(roomStrip)
-    ) {
-      if (overflows(roomStrip)) return roomStrip;
-      if (overflows(dayStrip)) return dayStrip;
-      return null;
-    }
-    if (roomStrip instanceof HTMLElement && overflows(roomStrip)) return roomStrip;
-    if (dayStrip instanceof HTMLElement && overflows(dayStrip)) return dayStrip;
-    return null;
-  }
 
   if (dayStrip instanceof HTMLElement && overflows(dayStrip)) return dayStrip;
   return null;
@@ -529,14 +620,13 @@ function horizontalStripFromTarget(target: EventTarget | null): HTMLElement | nu
 function isStripDragBlockedTarget(target: EventTarget | null): boolean {
   if (!target || !(target instanceof Element)) return false;
   return Boolean(
-    target.closest("button, a, input, textarea, select, label, [data-tag-description]"),
+    target.closest(
+      "button, a, input, textarea, select, label, [data-tag-description]",
+    ),
   );
 }
 
-/**
- * Mouse click-and-drag on horizontal strips (pointerType === "mouse"); narrow view
- * may use the nested room strip, wide view uses the day strip only.
- */
+/** Mouse click-and-drag on horizontal day strips (pointerType === "mouse"). */
 function wireMouseDragHorizontalScroll() {
   const app = document.getElementById("schedule-app");
   if (!app) return;
@@ -686,11 +776,16 @@ function buildFavoriteEventCard(
   ev: EnrichedEvent,
   room: Room,
   tags: TagDefinition[],
+  hasTimeConflict: boolean,
 ): HTMLElement {
   const article = document.createElement("article");
-  article.className = ev.highlight
-    ? "event-card event-card--highlight"
-    : "event-card";
+  article.className = [
+    "event-card",
+    ev.highlight ? "event-card--highlight" : "",
+    hasTimeConflict ? "event-card--favorite-conflict" : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
   if (ev.highlight) article.style.setProperty("--room-accent", room.accent);
   article.dataset.eventCard = "";
   article.dataset.eventId = ev.id;
@@ -760,11 +855,30 @@ function buildFavoriteEventCard(
   return article;
 }
 
+function favoriteTimeConflictKeys(
+  events: EnrichedEvent[],
+  favIds: Set<string>,
+): Set<string> {
+  const counts = new Map<string, number>();
+  for (const ev of events) {
+    if (!favIds.has(ev.id)) continue;
+    const key = `${ev.day}:${ev.startMinutes}`;
+    counts.set(key, (counts.get(key) ?? 0) + 1);
+  }
+
+  return new Set(
+    [...counts.entries()]
+      .filter(([, count]) => count > 1)
+      .map(([key]) => key),
+  );
+}
+
 function renderFavoritesView(bootstrap: ClientBootstrap) {
   const strip = document.getElementById("favorites-day-strip");
   if (!strip) return;
 
   const favIds = parseFavoriteIds();
+  const conflictKeys = favoriteTimeConflictKeys(bootstrap.events, favIds);
   clearEl(strip);
 
   if (favIds.size === 0) {
@@ -781,6 +895,11 @@ function renderFavoritesView(bootstrap: ClientBootstrap) {
   const tz = bootstrap.meta.timezone;
 
   for (const day of bootstrap.days) {
+    const hasFavoritesForDay = bootstrap.events.some(
+      (ev) => ev.day === day && favIds.has(ev.id),
+    );
+    if (!hasFavoritesForDay) continue;
+
     const page = document.createElement("section");
     page.className = "day-carousel__page";
     page.dataset.day = day;
@@ -822,7 +941,15 @@ function renderFavoritesView(bootstrap: ClientBootstrap) {
       const body = document.createElement("div");
       body.className = "room-column__body";
       for (const ev of list) {
-        body.appendChild(buildFavoriteEventCard(ev, room, bootstrap.tags));
+        const key = `${ev.day}:${ev.startMinutes}`;
+        body.appendChild(
+          buildFavoriteEventCard(
+            ev,
+            room,
+            bootstrap.tags,
+            conflictKeys.has(key),
+          ),
+        );
       }
       col.appendChild(body);
       roomStrip.appendChild(col);
@@ -1008,10 +1135,18 @@ function renderToday(bootstrap: ClientBootstrap) {
 }
 
 export function initScheduleUi(bootstrap: ClientBootstrap) {
+  const params = new URLSearchParams(window.location.search);
+  const urlDateRaw = params.get("date")?.trim() ?? "";
+  const urlLocationRaw = params.get("location")?.trim();
+  const urlTagRaw = params.get("tag")?.trim();
+
   wireNav(bootstrap);
   wireMouseDragHorizontalScroll();
   wireFilterPanel();
   wireFavorites(bootstrap);
+  restoreFilterChipsFromLocalStorage();
+  if (params.has("location")) applyLocationQueryParam(bootstrap, urlLocationRaw ?? "");
+  if (params.has("tag")) applyTagQueryParam(bootstrap, urlTagRaw ?? "");
   wireFilters(bootstrap);
   wireTagDescriptionPopover();
   renderToday(bootstrap);
@@ -1026,8 +1161,12 @@ export function initScheduleUi(bootstrap: ClientBootstrap) {
   tick();
 
   requestAnimationFrame(() => {
-    requestAnimationFrame(() =>
-      scrollScheduleCarouselToTodayIfNeeded(bootstrap),
-    );
+    requestAnimationFrame(() => {
+      if (urlDateRaw && bootstrap.days.includes(urlDateRaw)) {
+        scrollScheduleStripToDay(bootstrap, urlDateRaw);
+      } else {
+        scrollScheduleCarouselToTodayIfNeeded(bootstrap);
+      }
+    });
   });
 }
