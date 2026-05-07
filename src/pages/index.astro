@@ -8,6 +8,7 @@ import { buildEnrichedSchedule, toClientBootstrap } from "../lib/schedule";
 const config = parseAndValidateSchedule(rawSchedule);
 const enriched = buildEnrichedSchedule(config);
 const bootstrap = toClientBootstrap(enriched);
+const eventTitle = `${config.meta.conferenceName} ${config.meta.year}`;
 const title = `${config.meta.conferenceName} ${config.meta.year} — Schedule`;
 const description = `Browse the ${config.meta.conferenceName} ${config.meta.year} conference schedule: stages, sessions, and times in Reykjavík (${config.meta.timezone}).`;
 const keywords = [
@@ -20,6 +21,6 @@ const keywords = [
 ];
 ---
 
-<ScheduleLayout title={title} description={description} keywords={keywords}>
+<ScheduleLayout title={title} qrTitle={eventTitle} description={description} keywords={keywords}>
 	<ScheduleApp enriched={enriched} bootstrap={bootstrap} />
 </ScheduleLayout>

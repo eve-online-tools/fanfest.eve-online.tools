@@ -1,8 +1,10 @@
 ---
+import qrCodeRaw from "../../public/qr-code.svg?raw";
 import "../styles/schedule.css";
 
 interface Props {
 	title: string;
+	qrTitle: string;
 	description?: string;
 	/** Path only, e.g. `/og.png` — becomes absolute using `site` */
 	image?: string;
@@ -11,6 +13,7 @@ interface Props {
 
 const {
 	title,
+	qrTitle,
 	description = "Conference schedule",
 	image,
 	keywords = [],
@@ -19,6 +22,7 @@ const {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const imageURL = image ? new URL(image, Astro.site) : undefined;
 const buildId = import.meta.env.PUBLIC_BUILD_ID;
+const qrCodeSvg = qrCodeRaw.replace(/^<\?xml[^>]*>\s*/, "");
 const jsonLd = {
 	"@context": "https://schema.org",
 	"@type": "WebSite",
@@ -81,6 +85,31 @@ const jsonLd = {
 	<body class="schedule-body">
 		<div class="schedule-bg" aria-hidden="true"></div>
 		<slot />
-		<footer class="site-footer">Made by stroopwafels with ❤️</footer>
+		<footer class="site-footer" data-qr-open tabindex="0" role="button" aria-label="Show site QR code">
+			Made by stroopwafels with ❤️
+		</footer>
+		<dialog class="qr-popup" id="qr-popup" aria-label="Site QR code">
+			<h2 class="qr-popup__title">{qrTitle}</h2>
+			<div class="qr-popup__code" aria-hidden="true" set:html={qrCodeSvg} />
+			<p class="qr-popup__hint">Share this schedule by letting others scan this QR code</p>
+		</dialog>
+		<script is:inline>
+			const qrPopup = document.getElementById("qr-popup");
+			const qrOpen = document.querySelector("[data-qr-open]");
+
+			if (qrPopup instanceof HTMLDialogElement && qrOpen instanceof HTMLElement) {
+				const openQrPopup = () => {
+					if (!qrPopup.open) qrPopup.showModal();
+				};
+
+				qrOpen.addEventListener("click", openQrPopup);
+				qrOpen.addEventListener("keydown", (event) => {
+					if (event.key !== "Enter" && event.key !== " ") return;
+					event.preventDefault();
+					openQrPopup();
+				});
+				qrPopup.addEventListener("click", () => qrPopup.close());
+			}
+		</script>
 	</body>
 </html>
