@@ -50,8 +50,23 @@
 			"description": "Hosted by Fenris Creations developers."
 		},
 		{
+			"id": "eve",
+			"label": "EVE Online",
+			"color": "#00E5FF"
+		},
+		{
+			"id": "gc",
+			"label": "EVE Galaxy Conquest",
+			"color": "#7BA4FF"
+		},
+		{
+			"id": "echoes",
+			"label": "EVE Echoes",
+			"color": "#FF007F"
+		},
+		{
 			"id": "guest",
-			"label": "Guest",
+			"label": "Guest Speaker",
 			"color": "#F0ABFC",
 			"description": "Hosted by guest speakers."
 		},
@@ -63,12 +78,12 @@
 		},
 		{
 			"id": "frontier",
-			"label": "Frontier",
+			"label": "EVE Frontier",
 			"color": "#00E5FF"
 		},
 		{
 			"id": "vanguard",
-			"label": "Vanguard",
+			"label": "EVE Vanguard",
 			"color": "#7BA4FF"
 		},
 		{
@@ -98,10 +113,10 @@
 			"id": "ff2026-thu-nordurljos-1000",
 			"day": "2026-05-14",
 			"roomId": "nordurljos",
-			"tags": ["player"],
+			"tags": ["fc", "eve"],
 			"start": "10:00",
-			"title": "An Emergency Physician's Perspective",
-			"speakers": ["Argus Sorn"],
+			"title": "Team Security: Taking the War to Bots and RMT",
+			"speakers": ["FC Arcade", "FC Stinger"],
 			"duration": 0
 		},
 		{
@@ -111,14 +126,14 @@
 			"tags": ["fc"],
 			"start": "12:00",
 			"title": "EVE For EVEryone Panel",
-			"speakers": ["FC Tara"],
+			"speakers": ["FC Tara", "FC Moss", "FC Okami", "FC Eclipse", "Kshal", "Tyrion Hekki"],
 			"duration": 0
 		},
 		{
 			"id": "ff2026-thu-nordurljos-1300",
 			"day": "2026-05-14",
 			"roomId": "nordurljos",
-			"tags": ["player"],
+			"tags": ["player", "eve"],
 			"start": "13:00",
 			"title": "Life of a Killmail",
 			"speakers": ["Squizz Caphinator"],
@@ -128,7 +143,7 @@
 			"id": "ff2026-thu-nordurljos-1400",
 			"day": "2026-05-14",
 			"roomId": "nordurljos",
-			"tags": ["fc"],
+			"tags": ["fc", "eve"],
 			"start": "14:00",
 			"title": "Alliance Leadership Panel: What Goes Into Running an Alliance?",
 			"speakers": ["FC Swift"],
@@ -138,7 +153,7 @@
 			"id": "ff2026-thu-nordurljos-1500",
 			"day": "2026-05-14",
 			"roomId": "nordurljos",
-			"tags": ["player"],
+			"tags": ["player", "eve"],
 			"start": "15:00",
 			"title": "My origins as a small-gang PvPer to becoming a YouTube creator",
 			"speakers": ["Grunt Kado"],
@@ -158,27 +173,27 @@
 			"id": "ff2026-thu-kaldalon-1000",
 			"day": "2026-05-14",
 			"roomId": "kaldalon",
-			"tags": ["fc"],
+			"tags": ["player"],
 			"start": "10:00",
-			"title": "Team Security: Taking the War to Bots and RMT",
-			"speakers": ["FC Arcade", "FC Stinger"],
+			"title": "An Emergency Physician's Perspective",
+			"speakers": ["Argus Sorn"],
 			"duration": 0
 		},
 		{
 			"id": "ff2026-thu-kaldalon-1200",
 			"day": "2026-05-14",
 			"roomId": "kaldalon",
-			"tags": ["player"],
+			"tags": ["fc", "eve"],
 			"start": "12:00",
-			"title": "AT Fleet Composition and Theory",
-			"speakers": ["Kevin Grumman"],
+			"title": "Project Discovery: A Decade of Citizen Science",
+			"speakers": ["FC Edelweiss", "Ryan Brinkman", "Attila Szantner"],
 			"duration": 0
 		},
 		{
 			"id": "ff2026-thu-kaldalon-1300",
 			"day": "2026-05-14",
 			"roomId": "kaldalon",
-			"tags": ["fc"],
+			"tags": ["fc", "data"],
 			"start": "13:00",
 			"title": "Predicting the Future… Responsibly",
 			"speakers": ["FC Excluded"],
@@ -191,14 +206,14 @@
 			"tags": ["fc"],
 			"start": "14:00",
 			"title": "R&D - How the Carbon Engine is strengthening the wider EVE Universe",
-			"speakers": ["FC Rave", "FC Serpent", "FC Sasquatch"],
+			"speakers": ["FC Rave", "FC Serpent", "FC Sasquatch", "FC Overload"],
 			"duration": 0
 		},
 		{
 			"id": "ff2026-thu-kaldalon-1500",
 			"day": "2026-05-14",
 			"roomId": "kaldalon",
-			"tags": ["fc", "esi"],
+			"tags": ["fc", "eve", "esi"],
 			"start": "15:00",
 			"title": "3rd Party ESI Panel",
 			"speakers": ["FC Stroopwafel", "FC Pinky", "3rd party developers"],
@@ -208,20 +223,30 @@
 			"id": "ff2026-thu-kaldalon-1600",
 			"day": "2026-05-14",
 			"roomId": "kaldalon",
-			"tags": ["fc", "esi"],
+			"tags": ["fc", "eve", "esi"],
 			"start": "16:00",
 			"title": "ESI Panel: Supporting Developers at Scale",
-			"speakers": ["FC Stroopwafel", "FC Pinky"],
+			"speakers": ["FC Stroopwafel", "FC Pinky", "FC Troglodyte"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-thu-thriund-1000",
+			"day": "2026-05-14",
+			"roomId": "thriund",
+			"tags": ["player", "eve"],
+			"start": "10:00",
+			"title": "AT Fleet Composition and Theory",
+			"speakers": ["Kevin Grumman"],
 			"duration": 0
 		},
 		{
 			"id": "ff2026-thu-thriund-1200",
 			"day": "2026-05-14",
 			"roomId": "thriund",
-			"tags": ["fc"],
+			"tags": ["fc", "eve"],
 			"start": "12:00",
 			"title": "EVE Orbit: Everything but the Girl.",
-			"speakers": ["FC Troglodyte", "FC Graven", "FC Stroopwafel"],
+			"speakers": ["FC Troglodyte", "FC Graven", "FC Rubik", "FC Stroopwafel"],
 			"duration": 0
 		},
 		{
@@ -252,6 +277,16 @@
 			"start": "15:00",
 			"title": "Architects of the Frontier - Stories from Founder Access",
 			"speakers": ["FC Goodfella", "Lacal", "Ocky"],
+			"duration": 0
+		},
+		{
+			"id": "ff2026-thu-thriund-1600",
+			"day": "2026-05-14",
+			"roomId": "thriund",
+			"tags": ["fc", "gc", "echoes"],
+			"start": "16:00",
+			"title": "EVE Galaxy Conquest & EVE Echoes Panel",
+			"speakers": ["FC Björn", "FC 6-Pack", "FC Deadweight"],
 			"duration": 0
 		},
 		{
@@ -297,7 +332,7 @@
 			"tags": ["fc"],
 			"start": "10:00",
 			"title": "Opening Ceremony",
-			"speakers": ["FC Swift", "FC Lumi"],
+			"speakers": ["FC Swift", "FC Lumi", "FC Larrikin"],
 			"duration": 0,
 			"highlight": true
 		},
@@ -305,7 +340,7 @@
 			"id": "ff2026-fri-eldborg-1100",
 			"day": "2026-05-15",
 			"roomId": "eldborg",
-			"tags": ["player"],
+			"tags": ["player", "eve"],
 			"start": "11:00",
 			"title": "Politics, Patches, and Panic - What makes EVE markets move?",
 			"speakers": ["The Oz"],
@@ -315,7 +350,7 @@
 			"id": "ff2026-fri-eldborg-1200",
 			"day": "2026-05-15",
 			"roomId": "eldborg",
-			"tags": ["guest"],
+			"tags": ["guest", "eve"],
 			"start": "12:00",
 			"title": "How to Die in Space: A Choose-Your-Own Adventure That You Probably Won't Survive",
 			"speakers": ["Paul M. Sutters"],
@@ -327,8 +362,8 @@
 			"roomId": "eldborg",
 			"tags": ["fc"],
 			"start": "13:00",
-			"title": "Connecting Designers to the Players",
-			"speakers": ["FC Blaraka", "FC Bitman"],
+			"title": "The Infinite Game",
+			"speakers": ["FC Hellmar"],
 			"duration": 0
 		},
 		{
@@ -366,50 +401,40 @@
 			"id": "ff2026-fri-nordurljos-1100",
 			"day": "2026-05-15",
 			"roomId": "nordurljos",
-			"tags": ["fc"],
+			"tags": ["fc", "frontier"],
 			"start": "11:00",
-			"title": "Performance on Trial: Incident Management in EVE Online",
-			"speakers": ["FC Mayday"],
+			"title": "Travel and Exploration in the EVE Frontier Galaxy",
+			"speakers": ["FC Relativistic", "FC ConCron", "FC Kalirha", "FC Hex"],
 			"duration": 0
 		},
 		{
 			"id": "ff2026-fri-nordurljos-1200",
 			"day": "2026-05-15",
 			"roomId": "nordurljos",
-			"tags": ["fc"],
+			"tags": ["fc", "data"],
 			"start": "12:00",
-			"title": "Project Discovery: A Decade of Citizen Science",
-			"speakers": ["FC Edelweiss", "Ryan Brinkman"],
-			"duration": 0
-		},
-		{
-			"id": "ff2026-fri-nordurljos-1300",
-			"day": "2026-05-15",
-			"roomId": "nordurljos",
-			"tags": ["fc"],
-			"start": "13:00",
-			"title": "Little Things Panel",
-			"speakers": ["FC karkur", "FC Masterplan", "FC Mercury", "FC Kestrel", "FC k1p1"],
+			"title": "Data Presentation & Panel",
+			"speakers": ["FC Larrikin", "FC Data", "FC 6-Pack", "FC Esja"],
 			"duration": 0
 		},
 		{
 			"id": "ff2026-fri-nordurljos-1400",
 			"day": "2026-05-15",
 			"roomId": "nordurljos",
-			"tags": ["fc", "frontier"],
+			"tags": ["fc", "eve"],
 			"start": "14:00",
-			"title": "Sui x EVE Frontier Fireside with Hellmar and Kevin Boon, President of Mysten Labs",
-			"speakers": ["FC Bowman", "FC Raudur"],
+			"title": "Little Things Panel",
+			"speakers": ["FC karkur", "FC Masterplan", "FC Mercury", "FC Kestrel", "FC k1p1"],
 			"duration": 0
 		},
 		{
 			"id": "ff2026-fri-nordurljos-1500",
 			"day": "2026-05-15",
 			"roomId": "nordurljos",
-			"tags": ["fc", "data"],
+			"tags": ["fc", "eve"],
 			"start": "15:00",
-			"title": "Data Team",
-			"speakers": ["FC Björn"],
+			"title": "Performance on Trial: Incident Management in EVE Online",
+			"speakers": ["FC Mayday"],
 			"duration": 0
 		},
 		{
@@ -464,10 +489,10 @@
 			"id": "ff2026-sat-eldborg-1200",
 			"day": "2026-05-16",
 			"roomId": "eldborg",
-			"tags": ["guest"],
+			"tags": ["fc", "eve", "lore"],
 			"start": "12:00",
-			"title": "The Infinite Game",
-			"speakers": ["Fireside Chat"],
+			"title": "Evolving Empires: Four Sides to Every Story",
+			"speakers": ["FC Diegetic", "FC Burger", "FC Jayess"],
 			"duration": 0
 		},
 		{
@@ -487,7 +512,7 @@
 			"tags": ["fc", "frontier"],
 			"start": "14:00",
 			"title": "Frontier Keynote",
-			"speakers": ["FC Goodfella", "FC Maximum Cats", "FC Jotunn", "FC Bowman", "FC Overload"],
+			"speakers": ["FC Goodfella", "FC Maximum Cats", "FC Jötunn", "FC Bowman", "FC Overload"],
 			"duration": 0,
 			"highlight": true
 		},
@@ -495,10 +520,10 @@
 			"id": "ff2026-sat-eldborg-1500",
 			"day": "2026-05-16",
 			"roomId": "eldborg",
-			"tags": ["fc"],
+			"tags": ["fc", "eve"],
 			"start": "15:00",
 			"title": "[REDACTED] Expansion Unlocked",
-			"speakers": ["FC Okami", "FC klp1", "FC Nikon", "FC Havran", "FC Mercury"],
+			"speakers": ["FC Okami", "FC k1p1", "FC Nikon", "FC Havran", "FC Mercury"],
 			"duration": 0
 		},
 		{
@@ -516,10 +541,10 @@
 			"id": "ff2026-sat-nordurljos-1000",
 			"day": "2026-05-16",
 			"roomId": "nordurljos",
-			"tags": ["fc", "data"],
+			"tags": ["fc", "eve"],
 			"start": "10:00",
-			"title": "Data Panel",
-			"speakers": ["FC Björn"],
+			"title": "Connecting Designers to the Players",
+			"speakers": ["FC Blaraka", "FC Bituman"],
 			"duration": 0
 		},
 		{
@@ -528,28 +553,28 @@
 			"roomId": "nordurljos",
 			"tags": ["fc"],
 			"start": "11:00",
-			"title": "Ship Balance Therapy Session",
-			"speakers": ["FC Trash Panda", "FC Kestrel", "FC Fozzie"],
+			"title": "Unleashing Fenris",
+			"speakers": ["FC Burger", "FC Junison", "FC Slingermann"],
 			"duration": 0
 		},
 		{
 			"id": "ff2026-sat-nordurljos-1200",
 			"day": "2026-05-16",
 			"roomId": "nordurljos",
-			"tags": ["fc", "lore"],
+			"tags": ["fc", "frontier"],
 			"start": "12:00",
-			"title": "Evolving Empires: Four Sides to Every Story",
-			"speakers": ["FC Diegetic", "FC Burger", "FC Jayess"],
+			"title": "Sui x EVE Frontier Fireside with FC Hellmar and Kevin Boon, President of Mysten Labs",
+			"speakers": ["FC Bowman", "FC Raudur"],
 			"duration": 0
 		},
 		{
 			"id": "ff2026-sat-nordurljos-1300",
 			"day": "2026-05-16",
 			"roomId": "nordurljos",
-			"tags": ["fc", "frontier"],
+			"tags": ["fc", "eve"],
 			"start": "13:00",
-			"title": "Travel and Exploration in the EVE Frontier Galaxy",
-			"speakers": ["FC Relativistic", "FC ConCron", "FC Kalirha"],
+			"title": "Ship Balance Therapy Session",
+			"speakers": ["FC Trash Panda", "FC Kestrel", "FC Fozzie"],
 			"duration": 0
 		},
 		{
